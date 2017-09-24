@@ -39,7 +39,8 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    send_message(sender_id, "roger that!")
+                    if message_text == "@robb"
+                        send_message(sender_id, "roger that!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -58,7 +59,7 @@ def send_message(recipient_id, message_text):
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+        "access_token": os.environ["EAAG0YnX4dJoBAOP299V6zazDvk8fYRZCNRdAYT4YBCzhOtcWvZADHaMUFcxTVwZAHppvS3tCG196JzfOExDUZA05OYAzRYPpACrT1h2Kexwq3bZAadk4GIailcZCKwhJgsyCjo22RSEzWid7VkBWdbXZBybEb6mG6TEyKRrP2N8u1yvgwYAWgfF5PtQZC2qjbUkZD"]
     }
     headers = {
         "Content-Type": "application/json"
