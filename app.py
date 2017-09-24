@@ -40,7 +40,10 @@ def webhook():
                     message_text = messaging_event["message"]["text"]  # the message's text
 
                     if message_text[:6] ==  "@robb ":
-                        send_message(sender_id, str(eval(message_text[6:])))
+                            try:
+                                send_message(sender_id, str(eval(message_text[6:])))
+                            except:
+                                send_message(sender_id, "enche 10")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
