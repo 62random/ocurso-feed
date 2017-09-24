@@ -39,7 +39,7 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    if message_text == "@robb"
+                    if message_text == "@robb":
                         send_message(sender_id, "roger that!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
