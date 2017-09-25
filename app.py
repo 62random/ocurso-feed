@@ -43,7 +43,7 @@ def webhook():
                         try:
                             send_message(sender_id, str(eval(message_text)))
                         except:
-                            send_message(sender_id, "Ola Angela :)")
+                            send_message(sender_id, "enche 10")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
