@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import html
+
 import requests
 from flask import Flask, request
 
@@ -40,7 +41,7 @@ def created_post(data):
 	sender_id = data["post"]["username"]
 	title = data["post"]["topic_title"]
 	time = data["post"]["created_at"]
-	said = html.unescape(data["post"]["cooked"])
+	said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \"" + said + "\""
 
 	send_message(CONST_ID, string)
