@@ -41,30 +41,31 @@ def webhook():
 
 
 def created_post(data):
-	send_message(CONST_ID, "1")
+
 	try:
 		sender_id = data["post"]["username"]
 	except:
 		sender_id = "sender_id"
-	send_message(CONST_ID, "2")
+
 	try:
 		title = data["post"]["topic_title"]
 	except:
 		title = "title"
-	send_message(CONST_ID, "3")
+
 	try:
 		time = data["post"]["created_at"]
 	except:
 		time = "time"
-	send_message(CONST_ID, "4")
+
 	try:
 		said = remove_tags(data["post"]["cooked"])
 	except:
 		said = "said"
-	send_message(CONST_ID, "5")
-	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
+	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
+	send_message(CONST_ID, "1")
 	send_message(CONST_ID, string)
+	send_message(CONST_ID, "2")
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
