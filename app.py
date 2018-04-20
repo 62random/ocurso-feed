@@ -27,11 +27,7 @@ def webhook():
     # endpoint for processing incoming messaging events
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
-	try:
-		if not visible(data):
-			return "Não quero ver info privada de outros users :P", 200
-	except:
-		pass
+
 	sender_id = data["topic"]["details"]["created_by"]["username"]
 	title = data["topic"]["title"]
 	post_type = data["topic"]["archetype"]
