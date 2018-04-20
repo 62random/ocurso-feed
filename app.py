@@ -28,12 +28,8 @@ def webhook():
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
-    if (data["ping"] == "OK"):
-			try:
-				 send_message("random62", "OK")
-			except:
-				pass
-		'''
+    if data["object"] == "page":
+
         for entry in data["entry"]:
             try:
                 for messaging_event in entry["messaging"]:
@@ -60,8 +56,6 @@ def webhook():
                         pass
             except:
                 pass
-			'''
-
     return "ok", 200
 
 
