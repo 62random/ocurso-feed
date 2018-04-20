@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import re
+import html
 
 import requests
 from flask import Flask, request
@@ -47,10 +48,13 @@ def created_post(data):
 	time = data["post"]["created_at"]
 	said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
+
+	prepstring = html.escape(remove_tags(string))
+
 	try:
-		send_message(CONST_ID, remove_tags(string))
+		send_message(CONST_ID, prepstring)
 	except:
-		send_message(CONST_ID, "ç")
+		send_message(CONST_ID, string)
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
@@ -58,10 +62,14 @@ def created_topic(data):
 	post_type = data["topic"]["archetype"]
 	time = data["topic"]["last_posted_at"]
 	string = "New topic \"" + topic + "\" created by user <" + sender_id + ">\n@" + time + "\nType: " + post_type
+
+	prepstring = html.escape(remove_tags(string))
+
 	try:
-		send_message(CONST_ID, remove_tags(string))
+		send_message(CONST_ID, prepstring)
 	except:
 		send_message(CONST_ID, string)
+
 
 def remove_tags(text):
     return TAG_RE.sub('', text)
