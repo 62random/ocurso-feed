@@ -27,20 +27,7 @@ def webhook():
 
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
-	req = request.prepare()
 
-
-	try:
-		send_message("random62", ('{}\n{}\n{}\n\n{}'.format(
-	        '-----------START-----------',
-	        req.method + ' ' + req.url,
-	        '\n'.join('{}: {}'.format(k, v) for k, v in req.headers.items()),
-	        req.body,
-	    ))
-	except:
-		send_message("random62", "enche 10")
-
-'''
     if data["object"] == "page":
 
         for entry in data["entry"]:
@@ -70,7 +57,7 @@ def webhook():
             except:
                 pass
     return "ok", 200
-'''
+
 
 def send_message(recipient_id, message_text):
 
