@@ -28,49 +28,27 @@ def webhook():
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
+	post_type = data["topic"]["archetype"]
+
+	if(post_type == "private_message")
+		flag = 0
+		for user in data["topic"]["details"]["allowed_users"]: #para eu não receber mensagens privadas de outros utilizadores
+			if user["username"] == "Random":
+				flag = 1;
+		if flag != 1
+			return "ok",200
+
 	sender_id = data["topic"]["details"]["created_by"]["username"]
 	title = data["topic"]["title"]
-	post_type = data["topic"]["archetype"]
 	time = data["topic"]["last_posted_at"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nType: " + post_type
 
 	try:
 		send_message(CONST_ID, string)
 	except:
-		send_message(CONST_ID, "erro :(")
+		send_message(CONST_ID, "erro :(\n Data:\n" + str(data))
 	return "ok", 200
-'''
 
-    if data["object"] == "page":
-
-        for entry in data["entry"]:
-            try:
-                for messaging_event in entry["messaging"]:
-
-                    if messaging_event.get("message"):  # someone sent us a message
-
-                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                        message_text = messaging_event["message"]["text"]  # the message's text
-
-                    if message_text != "/":
-                            try:
-                                send_message(CONST_ID, str(eval(message_text)))
-                            except:
-                                send_message(CONST_ID, "enche 10")
-
-                    if messaging_event.get("delivery"):  # delivery confirmation
-                        pass
-
-                    if messaging_event.get("optin"):  # optin confirmation
-                        pass
-
-                    if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                        pass
-            except:
-                pass
-    return "ok", 200
-'''
 
 
 
