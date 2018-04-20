@@ -23,11 +23,8 @@ def verify():
 @app.route('/', methods=['POST'])
 def webhook():
 
-    # endpoint for processing incoming messaging events lel
-'''
-	send_message("random62", "OK")
-	return "ok", 200
-'''
+    # endpoint for processing incoming messaging events
+
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
@@ -60,7 +57,6 @@ def webhook():
             except:
                 pass
     return "ok", 200
-#'''
 
 
 def send_message(recipient_id, message_text):
