@@ -25,9 +25,12 @@ def webhook():
 
     # endpoint for processing incoming messaging events lel
 
+	send_message("random62", "OK")
+	return "ok", 200
 	'''
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
+
     if data["object"] == "page":
 
         for entry in data["entry"]:
@@ -56,8 +59,8 @@ def webhook():
                         pass
             except:
                 pass
-	'''
     return "ok", 200
+'''
 
 
 def send_message(recipient_id, message_text):
