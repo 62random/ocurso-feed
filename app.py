@@ -47,7 +47,10 @@ def created_post(data):
 	try:
 		said = remove_tags(data["post"]["cooked"])
 	except:
-		said = data["post"]["cooked"]
+		try:
+			said = data["post"]["cooked"]
+		except:
+			said = ""
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
 	send_message(CONST_ID, string)
