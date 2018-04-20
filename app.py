@@ -24,10 +24,10 @@ def verify():
 def webhook():
 
     # endpoint for processing incoming messaging events lel
-
-	send_message("915410003", "OK")
+'''
+	send_message("random62", "OK")
 	return "ok", 200
-	'''
+'''
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
@@ -45,7 +45,7 @@ def webhook():
 
                     if message_text != "/":
                             try:
-                                send_message(sender_id, str(eval(message_text)))
+                                send_message(sender_id, sender_id)
                             except:
                                 send_message(sender_id, "enche 10")
 
@@ -60,7 +60,7 @@ def webhook():
             except:
                 pass
     return "ok", 200
-'''
+#'''
 
 
 def send_message(recipient_id, message_text):
