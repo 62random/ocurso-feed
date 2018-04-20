@@ -25,7 +25,9 @@ def verify():
 def webhook():
 
     # endpoint for processing incoming messaging events
-
+	
+	return "ok", 200
+'''
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
@@ -58,7 +60,7 @@ def webhook():
             except:
                 pass
     return "ok", 200
-
+'''
 
 def send_message(recipient_id, message_text):
 
