@@ -61,6 +61,7 @@ def created_topic(data):
 	try:
 		send_message(CONST_ID, remove_tags(string))
 	except:
+		send_message(CONST_ID, "1")
 		send_message(CONST_ID, string)
 
 def remove_tags(text):
