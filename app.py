@@ -42,30 +42,15 @@ def webhook():
 
 def created_post(data):
 
-	try:
-		sender_id = data["post"]["username"]
-	except:
-		sender_id = "sender_id"
-
-	try:
-		title = data["post"]["topic_title"]
-	except:
-		title = "title"
-
-	try:
-		time = data["post"]["created_at"]
-	except:
-		time = "time"
-
-	try:
-		said = remove_tags(data["post"]["cooked"])
-	except:
-		said = "said"
-
+	sender_id = data["post"]["username"]
+	title = data["post"]["topic_title"]
+	time = data["post"]["created_at"]
+	said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
-
-	send_message(CONST_ID, said)
-
+	try:
+		send_message(CONST_ID, remove_tags(string))
+	except:
+		send_message(CONST_ID, string)
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
@@ -73,8 +58,10 @@ def created_topic(data):
 	post_type = data["topic"]["archetype"]
 	time = data["topic"]["last_posted_at"]
 	string = "New topic \"" + topic + "\" created by user <" + sender_id + ">\n@" + time + "\nType: " + post_type
-
-	send_message(CONST_ID, string)
+	try:
+		send_message(CONST_ID, remove_tags(string))
+	except:
+		send_message(CONST_ID, string)
 
 def remove_tags(text):
     return TAG_RE.sub('', text)
