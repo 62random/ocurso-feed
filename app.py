@@ -1,7 +1,6 @@
 import os
 import sys
 import json
-import html
 
 import requests
 from flask import Flask, request
