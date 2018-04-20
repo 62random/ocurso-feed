@@ -25,7 +25,8 @@ def verify():
 def webhook():
 
     # endpoint for processing incoming messaging events
-	
+	send_message(CONST_ID, "ola")
+
 	return "ok", 200
 '''
     data = request.get_json()
