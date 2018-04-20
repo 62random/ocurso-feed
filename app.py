@@ -28,7 +28,7 @@ def webhook():
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 	try:
-		send_message(CONST_ID, json.dump(data))
+		send_message(CONST_ID, str(data))
 	except:
 		send_message(CONST_ID, "ola")
 	return "ok", 200
