@@ -1,7 +1,6 @@
 import os
 import sys
 import json
-import HTMLParser
 
 import requests
 from flask import Flask, request
@@ -41,8 +40,7 @@ def created_post(data):
 	sender_id = data["post"]["username"]
 	title = data["post"]["topic_title"]
 	time = data["post"]["created_at"]
-	htmlparser = HTMLParser.HTMLParser()
-	said = htmlparser.escape(data["post"]["cooked"])
+	said = html.escape(data["post"]["cooked"])
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \"" + said + "\""
 
 	send_message(CONST_ID, string)
