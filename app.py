@@ -29,7 +29,7 @@ def webhook():
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
 	if not visible(data):
-		return "Não quero ver info privada dos outros users :P", 200
+		return "Nao quero ver info privada dos outros users :P", 200
 	sender_id = data["topic"]["details"]["created_by"]["username"]
 	title = data["topic"]["title"]
 	post_type = data["topic"]["archetype"]
