@@ -28,8 +28,6 @@ def webhook():
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
-	if not visible(data):
-		return "Nao quero ver info privada dos outros users :P", 200
 	sender_id = data["topic"]["details"]["created_by"]["username"]
 	title = data["topic"]["title"]
 	post_type = data["topic"]["archetype"]
@@ -44,8 +42,8 @@ def webhook():
 
 def visble(data):
 	try:
-		ptype = data["topic"]["archetype"]
-		if ptype == "private_message":
+		type = data["topic"]["archetype"]
+		if type == "private_message":
 			for user in data["topic"]["details"]["allowed_users"]:
 				if user["userid"] == "Random":
 					return True
