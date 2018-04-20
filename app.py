@@ -28,9 +28,11 @@ def webhook():
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
-    if data["ping"] == "OK":
+    if (data["ping"] == "OK"):
 			try:
 				 send_message("random62", "OK")
+			except:
+				pass
 		'''
         for entry in data["entry"]:
             try:
@@ -56,9 +58,9 @@ def webhook():
 
                     if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
                         pass
-					'''
             except:
                 pass
+			'''
 
     return "ok", 200
 
