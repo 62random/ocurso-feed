@@ -42,7 +42,7 @@ def created_post(data):
 	title = data["post"]["topic_title"]
 	time = data["post"]["created_at"]
 	htmlparser = HTMLParser.HTMLParser()
-	said = htmlparser.unescape(data["post"]["cooked"])
+	said = htmlparser.escape(data["post"]["cooked"])
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \"" + said + "\""
 
 	send_message(CONST_ID, string)
