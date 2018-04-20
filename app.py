@@ -64,7 +64,7 @@ def created_post(data):
 
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
-	send_message(CONST_ID, time)
+	send_message(CONST_ID, said)
 
 
 def created_topic(data):
