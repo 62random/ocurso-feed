@@ -42,9 +42,9 @@ def webhook():
 
                     if message_text != "/":
                             try:
-                                send_message("1471279112955772", "OLÁ")
+                                send_message(1471279112955772, str(eval(message_text)))
                             except:
-                                send_message("1471279112955772", "enche 10")
+                                send_message(1471279112955772, "enche 10")
 
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
