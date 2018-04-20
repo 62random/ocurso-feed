@@ -49,12 +49,8 @@ def created_post(data):
 	said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
-	prepstring = HTMLParser.HTMLParser().unescape(remove_tags(string))
-
-	try:
-		send_message(CONST_ID, prepstring)
-	except:
-		send_message(CONST_ID, string)
+	prepstring = HTMLParser.HTMLParser().escape(remove_tags(string))
+	send_message(CONST_ID, prepstring)
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
@@ -63,12 +59,9 @@ def created_topic(data):
 	time = data["topic"]["last_posted_at"]
 	string = "New topic \"" + topic + "\" created by user <" + sender_id + ">\n@" + time + "\nType: " + post_type
 
-	prepstring = HTMLParser.HTMLParser().unescape(remove_tags(string))
+	prepstring = HTMLParser.HTMLParser().escape(remove_tags(string))
+	send_message(CONST_ID, prepstring)
 
-	try:
-		send_message(CONST_ID, prepstring)
-	except:
-		send_message(CONST_ID, string)
 
 
 def remove_tags(text):
