@@ -26,7 +26,7 @@ def webhook():
 	try:
 		send_message(CONST_ID, "OLÁ")
 	except:
-		send_message(CONST_ID, "OLÁ")
+		pass
 	return "ok", 200
 
 '''
