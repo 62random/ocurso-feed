@@ -27,10 +27,17 @@ def webhook():
     # endpoint for processing incoming messaging events
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
+
+	sender_id = data["topic"]["details"]["created_by"]["username"]
+	title = data["topic"]["title"]
+	post_type = data["topic"]["archetype"]
+	time = data["topic"]["last_posted_at"]
+	string = "New reply from user " + sender_id + " on topic " + title + "\n@" + time + "\nType: " + post_type
+
 	try:
-		send_message(CONST_ID, str(data))
+		send_message(CONST_ID, string)
 	except:
-		send_message(CONST_ID, "ola")
+		send_message(CONST_ID, "erro :(")
 	return "ok", 200
 '''
 
@@ -64,6 +71,9 @@ def webhook():
                 pass
     return "ok", 200
 '''
+
+
+
 
 def send_message(recipient_id, message_text):
 
