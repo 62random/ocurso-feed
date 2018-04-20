@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 
 import requests
 from flask import Flask, request
@@ -8,6 +9,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 CONST_ID = 1471279112955772
+TAG_RE = re.compile(r'<[^>]+>')
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -40,7 +42,7 @@ def created_post(data):
 	sender_id = data["post"]["username"]
 	title = data["post"]["topic_title"]
 	time = data["post"]["created_at"]
-	said = data["post"]["cooked"]
+	said = remove_tags(data["post"]["cooked"])
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \"" + said + "\""
 
 	send_message(CONST_ID, string)
@@ -54,7 +56,8 @@ def created_topic(data):
 
 	send_message(CONST_ID, string)
 
-
+def remove_tags(text):
+    return TAG_RE.sub('', text)
 
 def send_message(recipient_id, message_text):
 
