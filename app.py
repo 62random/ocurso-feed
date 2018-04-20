@@ -27,7 +27,7 @@ def webhook():
     # endpoint for processing incoming messaging events
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
-	send_message(CONST_ID, data.text)
+	send_message(CONST_ID, request.text)
 
 	return "ok", 200
 '''
