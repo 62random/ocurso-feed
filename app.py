@@ -29,15 +29,15 @@ def webhook():
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
 	post_type = data["topic"]["archetype"]
-
+'''
 	if post_type == "private_message":
 		flag = 0
 		for user in data["topic"]["details"]["allowed_users"]: #para eu não receber mensagens privadas de outros utilizadores
 			if user["username"] == "Random":
 				flag = 1;
 		if flag != 1:
-			return "ok",200
-
+			return "ok", 200
+'''
 	sender_id = data["topic"]["details"]["created_by"]["username"]
 	title = data["topic"]["title"]
 	time = data["topic"]["last_posted_at"]
