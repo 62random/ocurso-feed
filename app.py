@@ -7,6 +7,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+ID = "1471279112955772"
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -42,9 +43,9 @@ def webhook():
 
                     if message_text != "/":
                             try:
-                                send_message(sender_id, sender_id)
+                                send_message(ID, "OLÁ")
                             except:
-                                send_message(sender_id, "enche 10")
+                                send_message(ID, "enche 10")
 
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
