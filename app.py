@@ -33,19 +33,17 @@ def webhook():
 		try:
 			created_topic(data)
 		except:
-			return "erro :(", 200
+			send_message(CONST_ID, "erro :(\n Data:\n" + str(data))
 
+	return "ok", 200
 def created_post(data):
 	sender_id = data["post"]["username"]
 	title = data["post"]["topic_title"]
 	time = data["post"]["created_at"]
 	said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \"" + said + "\""
-	try:
-		send_message(CONST_ID, string)
-	except:
-		send_message(CONST_ID, "erro :(\n Data:\n" + str(data))
-	return "ok", 200
+
+	send_message(CONST_ID, string)
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
@@ -53,11 +51,8 @@ def created_topic(data):
 	post_type = data["topic"]["archetype"]
 	time = data["topic"]["last_posted_at"]
 	string = "New topic \"" + topic + "\" created by user <" + sender_id + ">\n@" + time + "\nType: " + post_type
-	try:
-		send_message(CONST_ID, string)
-	except:
-		send_message(CONST_ID, "erro :(\n Data:\n" + str(data))
-	return "ok", 200
+
+	send_message(CONST_ID, string)
 
 
 
