@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import re
-import html
+import html.parser
 
 import requests
 from flask import Flask, request
@@ -49,7 +49,7 @@ def created_post(data):
 	said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
-	prepstring = html.escape(remove_tags(string))
+	prepstring = html.parser.HTMLParser().unescape(remove_tags(string))
 
 	try:
 		send_message(CONST_ID, prepstring)
@@ -63,7 +63,7 @@ def created_topic(data):
 	time = data["topic"]["last_posted_at"]
 	string = "New topic \"" + topic + "\" created by user <" + sender_id + ">\n@" + time + "\nType: " + post_type
 
-	prepstring = html.escape(remove_tags(string))
+	prepstring = html.parser.HTMLParser().unescape(remove_tags(string))
 
 	try:
 		send_message(CONST_ID, prepstring)
