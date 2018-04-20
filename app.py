@@ -38,11 +38,16 @@ def webhook():
 			send_message(CONST_ID, "erro :(\n Data:\n" + str(data))
 
 	return "ok", 200
+
+
 def created_post(data):
 	sender_id = data["post"]["username"]
 	title = data["post"]["topic_title"]
 	time = data["post"]["created_at"]
-	said = remove_tags(data["post"]["cooked"])
+	try:
+		said = remove_tags(data["post"]["cooked"])
+	except:
+		said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
 	send_message(CONST_ID, string)
