@@ -47,9 +47,9 @@ def created_post(data):
 	title = data["post"]["topic_title"]
 	time = data["post"]["created_at"]
 	said = data["post"]["cooked"]
-	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
+	string = "New reply from user [" + sender_id + "] on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
-	prepstring = (remove_tags(string))
+	prepstring = remove_tags(string)
 	send_message(CONST_ID, prepstring)
 
 def created_topic(data):
@@ -57,9 +57,9 @@ def created_topic(data):
 	title = data["topic"]["title"]
 	post_type = data["topic"]["archetype"]
 	time = data["topic"]["last_posted_at"]
-	string = "New topic \"" + topic + "\" created by user <" + sender_id + ">\n@" + time + "\nType: " + post_type
+	string = "New topic \"" + topic + "\" created by user [" + sender_id + "]\n@" + time + "\nType: " + post_type
 
-	prepstring = (remove_tags(string))
+	prepstring = remove_tags(string)
 	send_message(CONST_ID, prepstring)
 
 
