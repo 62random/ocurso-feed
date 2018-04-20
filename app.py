@@ -27,8 +27,7 @@ def webhook():
     # endpoint for processing incoming messaging events
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
-	if not visible(data):
-			return "Não quero ver mensagens de outros users xD", 200
+
 	sender_id = data["topic"]["details"]["created_by"]["username"]
 	title = data["topic"]["title"]
 	post_type = data["topic"]["archetype"]
@@ -42,15 +41,7 @@ def webhook():
 	return "ok", 200
 
 
-def visible(data):
-	post_type = data["topic"]["archetype"]
-	if post_type == "private_message":
-		flag = 0
-		for user in data["topic"]["details"]["allowed_users"]: #para eu não receber mensagens privadas de outros utilizadores
-			if user["username"] == "Random":
-				return True
-		return False
-	return True
+
 
 
 def send_message(recipient_id, message_text):
