@@ -23,10 +23,8 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webhook():
-	try:
 		send_message(CONST_ID, "OLÁ")
-	except:
-		pass
+
 	return "ok", 200
 
 '''
