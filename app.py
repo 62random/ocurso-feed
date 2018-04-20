@@ -40,8 +40,17 @@ def webhook():
 		send_message(CONST_ID, "erro :(\n Data:\n" + str(data))
 	return "ok", 200
 
-
-
+def visble(data):
+	try:
+		type = data["topic"]["archetype"]
+		if type == "private_message":
+			for user in data["topic"]["details"]["allowed_users"]:
+				if user["userid"] == "Random":
+					return True
+			return False
+		return True
+	except:
+		return True
 
 
 def send_message(recipient_id, message_text):
