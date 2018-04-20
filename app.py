@@ -25,12 +25,12 @@ def verify():
 def webhook():
 
     # endpoint for processing incoming messaging events
-	send_message(CONST_ID, "ola")
+	data = request.get_json()
+	log(data)  # you may not want to log every incoming message in production, but it's good for testing
+	send_message(CONST_ID, data.text)
 
 	return "ok", 200
 '''
-    data = request.get_json()
-    log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     if data["object"] == "page":
 
