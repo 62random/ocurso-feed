@@ -49,7 +49,7 @@ def created_post(data):
 	said = data["post"]["cooked"]
 	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nAnd said: \n\"" + said + "\""
 
-	prepstring = (remove_tags(string)).decode('utf-8')
+	prepstring = (remove_tags(string))
 	send_message(CONST_ID, prepstring)
 
 def created_topic(data):
@@ -59,7 +59,7 @@ def created_topic(data):
 	time = data["topic"]["last_posted_at"]
 	string = "New topic \"" + topic + "\" created by user <" + sender_id + ">\n@" + time + "\nType: " + post_type
 
-	prepstring = (remove_tags(string)).decode('utf-8')
+	prepstring = (remove_tags(string))
 	send_message(CONST_ID, prepstring)
 
 
@@ -69,7 +69,7 @@ def remove_tags(text):
 
 def send_message(recipient_id, message_text):
 
-    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text.encode('utf-8')))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
