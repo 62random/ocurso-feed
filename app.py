@@ -25,7 +25,7 @@ def webhook():
 
     # endpoint for processing incoming messaging events lel
 
-	send_message("random62", "OK")
+	send_message("915410003", "OK")
 	return "ok", 200
 	'''
     data = request.get_json()
