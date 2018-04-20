@@ -32,7 +32,7 @@ def webhook():
 	title = data["topic"]["title"]
 	post_type = data["topic"]["archetype"]
 	time = data["topic"]["last_posted_at"]
-	string = "New reply from user " + sender_id + " on topic " + title + "\n@" + time + "\nType: " + post_type
+	string = "New reply from user <" + sender_id + "> on topic \"" + title + "\"\n@" + time + "\nType: " + post_type
 
 	try:
 		send_message(CONST_ID, string)
