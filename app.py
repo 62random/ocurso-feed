@@ -50,8 +50,7 @@ def created_post(data):
 	try:
 		send_message(CONST_ID, remove_tags(string))
 	except:
-		send_message(CONST_ID, "1")
-		send_message(CONST_ID, string)
+		send_message(CONST_ID, "ç")
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
