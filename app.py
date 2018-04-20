@@ -32,9 +32,9 @@ def webhook():
 		flag = 0
 		for user in data["topic"]["details"]["allowed_users"]: #para eu não receber mensagens privadas de outros utilizadores
 			if user["username"] == "Random":
-				flag = 1;
+				flag = 1
 		if flag != 1:
-			return "ok", 200
+			return "Não quero ver mensagens de outros users xD", 200
 	sender_id = data["topic"]["details"]["created_by"]["username"]
 	title = data["topic"]["title"]
 	time = data["topic"]["last_posted_at"]
