@@ -30,12 +30,12 @@ def webhook():
 
 	post_type = data["topic"]["archetype"]
 
-	if(post_type == "private_message")
+	if post_type == "private_message":
 		flag = 0
 		for user in data["topic"]["details"]["allowed_users"]: #para eu não receber mensagens privadas de outros utilizadores
 			if user["username"] == "Random":
 				flag = 1;
-		if flag != 1
+		if flag != 1:
 			return "ok",200
 
 	sender_id = data["topic"]["details"]["created_by"]["username"]
