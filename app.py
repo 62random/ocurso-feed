@@ -38,7 +38,7 @@ def webhook():
 	        req.body,
 	    ))
 	except:
-		send_message(sender_id, "enche 10")
+		send_message("random62", "enche 10")
 
 '''
     if data["object"] == "page":
