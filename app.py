@@ -10,7 +10,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 RANDOM = 1471279112955772
-BLOCO = {RANDOM}
+BLOCO = [RANDOM, RANDOM, RANDOM]
 TAG_RE = re.compile(r'<[^>]+>')
 
 @app.route('/', methods=['GET'])
