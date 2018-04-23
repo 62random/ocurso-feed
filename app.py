@@ -34,7 +34,6 @@ def webhook():
 		try:
 			created_topic(data)
 		except:
-			send_message("random62", "ola")
 			send_message(RANDOM, "erro :(\n Data:\n" + str(data))
 
 	return "ok", 200
@@ -50,6 +49,7 @@ def created_post(data):
 	string = "New reply from user [" + sender_id + "] on topic [" + title + "]\nat " + time + "\nAnd said: \n\"" + said + "\""
 
 	prepstring = remove_tags(string)
+	send_message("random62", "ola")
 	send_bloco(prepstring)
 
 def created_topic(data):
