@@ -30,19 +30,15 @@ def webhook():
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
 	try:
-		sender = data["entry"]["messaging"]["sender"]["id"]
-	except:
-		sender = "ola"
-
-	send_message(constantids.RANDOM, sender)
-
-	try:
-		created_post(data)
+		facebook_message(data)
 	except:
 		try:
-			created_topic(data)
+			created_post(data)
 		except:
-			send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
+			try:
+				created_topic(data)
+			except:
+				send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
 
 	return "ok", 200
 
@@ -106,6 +102,35 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
         log(r.text)
 
+
+def facebook_message(data):
+    if data["object"] == "page":
+        for entry in data["entry"]:
+            try:
+                for messaging_event in entry["messaging"]:
+
+                    if messaging_event.get("message"):  # someone sent us a message
+
+                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                        message_text = messaging_event["message"]["text"]  # the message's text
+
+                    if message_text != "/":
+                            try:
+                                send_message(constantids.RANDOM, sender_id + " said:\n\"" + message_text + "\"")
+                            except:
+                                send_message(constantids.RANDOM, "enche 10")
+
+                    if messaging_event.get("delivery"):  # delivery confirmation
+                        pass
+
+                    if messaging_event.get("optin"):  # optin confirmation
+                        pass
+
+                    if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
+                        pass
+            except:
+                pass
 
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
