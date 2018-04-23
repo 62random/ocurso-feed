@@ -9,7 +9,8 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-CONST_ID = 1471279112955772
+RANDOM = 1471279112955772
+BLOCO = {RANDOM}
 TAG_RE = re.compile(r'<[^>]+>')
 
 @app.route('/', methods=['GET'])
@@ -36,7 +37,7 @@ def webhook():
 		try:
 			created_topic(data)
 		except:
-			send_message(CONST_ID, "erro :(\n Data:\n" + str(data))
+			send_message(RANDOM, "erro :(\n Data:\n" + str(data))
 
 	return "ok", 200
 
@@ -51,7 +52,7 @@ def created_post(data):
 	string = "New reply from user [" + sender_id + "] on topic [" + title + "]\nat " + time + "\nAnd said: \n\"" + said + "\""
 
 	prepstring = remove_tags(string)
-	send_message(CONST_ID, prepstring)
+	send_bloco(RANDOM, prepstring)
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
@@ -62,12 +63,19 @@ def created_topic(data):
 	string = "New topic [" + topic + "] created by user [" + sender_id + "]\nat " + time + ".\nType: " + post_type
 
 	prepstring = remove_tags(string)
-	send_message(CONST_ID, prepstring)
+	send_bloco(RANDOM, prepstring)
 
 
 
 def remove_tags(text):
     return TAG_RE.sub('', text)
+
+def send_bloco(message_text):
+	for recipient_id in BLOCO:
+		try:
+			send_message(recipient_id, message_text)
+		except:
+			pass
 
 def send_message(recipient_id, message_text):
 
