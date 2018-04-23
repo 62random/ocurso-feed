@@ -31,14 +31,21 @@ def webhook():
 
 	try:
 		facebook_message(data)
+		return "ok", 200
 	except:
-		try:
-			created_post(data)
-		except:
-			try:
-				created_topic(data)
-			except:
-				send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
+		pass
+
+	try:
+		created_post(data)
+		return "ok", 200
+	except:
+		pass
+
+	try:
+		created_topic(data)
+		return "ok", 200
+	except:
+		send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
 
 	return "ok", 200
 
