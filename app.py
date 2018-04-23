@@ -31,7 +31,7 @@ def webhook():
 
 	try:
 		sender = data["entry"]["messaging"]["message"]["sender"]["id"]
-		send_message(sender,sender)
+		send_message(constantids.RANDOM,sender)
 	except:
 		try:
 			created_post(data)
