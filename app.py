@@ -30,7 +30,7 @@ def webhook():
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
 	try:
-		sender = data["entry"]["messaging"]["message"]["sender"]["id"]
+		sender = data["entry"]["messaging"]["sender"]["id"]
 	except:
 		sender = "ola"
 
