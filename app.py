@@ -3,14 +3,11 @@ import sys
 import json
 import re
 import HTMLParser
-
 import requests
 from flask import Flask, request
-
+from constants import RANDOM, BLOCO
 app = Flask(__name__)
 
-RANDOM = 1471279112955772
-BLOCO = [RANDOM, RANDOM, RANDOM]
 TAG_RE = re.compile(r'<[^>]+>')
 
 @app.route('/', methods=['GET'])
