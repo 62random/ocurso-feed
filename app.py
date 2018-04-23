@@ -60,7 +60,6 @@ def created_post(data):
 	string = "New reply from user [" + sender_id + "] on topic [" + title + "]\nat " + time + "\nAnd said: \n\"" + said + "\""
 
 	prepstring = remove_tags(string)
-	tsend_message("random62", "ola")
 	send_bloco(prepstring)
 
 def created_topic(data):
