@@ -5,7 +5,7 @@ import re
 import HTMLParser
 import requests
 from flask import Flask, request
-from constants import RANDOM, BLOCO
+import constantids
 app = Flask(__name__)
 
 TAG_RE = re.compile(r'<[^>]+>')
@@ -49,7 +49,7 @@ def created_post(data):
 	string = "New reply from user [" + sender_id + "] on topic [" + title + "]\nat " + time + "\nAnd said: \n\"" + said + "\""
 
 	prepstring = remove_tags(string)
-	send_bloco(RANDOM, prepstring)
+	send_bloco(prepstring)
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
@@ -60,7 +60,7 @@ def created_topic(data):
 	string = "New topic [" + topic + "] created by user [" + sender_id + "]\nat " + time + ".\nType: " + post_type
 
 	prepstring = remove_tags(string)
-	send_bloco(RANDOM, prepstring)
+	send_bloco(prepstring)
 
 
 
@@ -68,7 +68,7 @@ def remove_tags(text):
     return TAG_RE.sub('', text)
 
 def send_bloco(message_text):
-	for recipient_id in BLOCO:
+	for recipient_id in constantids.BLOCO:
 		try:
 			send_message(recipient_id, message_text)
 		except:
