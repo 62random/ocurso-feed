@@ -34,6 +34,7 @@ def webhook():
 		try:
 			created_topic(data)
 		except:
+			send_message("random62", "ola")
 			send_message(RANDOM, "erro :(\n Data:\n" + str(data))
 
 	return "ok", 200
