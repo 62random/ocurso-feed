@@ -29,17 +29,20 @@ def webhook():
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
-#try:
-#	sender = data["entry"]["messaging"]["message"]["sender"]["id"]
-#	send_message(constantids.RANDOM,sender)
-#except:
+	try:
+		sender = data["entry"]["messaging"]["message"]["sender"]["id"]
+	except:
+		sender = "ola"
+
+	send_message(constantids.RANDOM, sender)
+
 	try:
 		created_post(data)
 	except:
 		try:
 			created_topic(data)
 		except:
-			send_message(RANDOM, "erro :(\n Data:\n" + str(data))
+			send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
 
 	return "ok", 200
 
