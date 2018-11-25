@@ -60,10 +60,10 @@ def created_post(data):
 	string = "New reply from user [" + sender_id + "] on topic [" + title + "]\nat " + time + "\nAnd said: \n\"" + said + "\""
 
         if "lazyYT" in string:
-            prepstring = string.replace("<div class=\"lazyYT\" data-youtube-id=\"", "https://www.youtube.com/watch?v=")
-            prepstring = prepstring.replace("\" data-youtube", " <div") 
-        prepstring = remove_tags(prepstring)
-	send_bloco(prepstring)
+            string = string.replace("<div class=\"lazyYT\" data-youtube-id=\"", "https://www.youtube.com/watch?v=")
+            string = string.replace("\" data-youtube", " <div") 
+        string = remove_tags(string)
+	send_bloco(string)
 
 def created_topic(data):
 	sender_id = data["topic"]["details"]["created_by"]["username"]
@@ -73,8 +73,8 @@ def created_topic(data):
 	time = time[11:16] + " of " + time[0:10]
 	string = "New topic [" + topic + "] created by user [" + sender_id + "]\nat " + time + ".\nType: " + post_type
 
-	prepstring = remove_tags(string)
-	send_bloco(prepstring)
+	string = remove_tags(string)
+	send_bloco(string)
 
 
 
