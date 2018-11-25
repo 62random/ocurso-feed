@@ -59,9 +59,9 @@ def created_post(data):
 	said = data["post"]["cooked"]
 	string = "New reply from user [" + sender_id + "] on topic [" + title + "]\nat " + time + "\nAnd said: \n\"" + said + "\""
 
-
-        prepstring = string.replace("<div class=\"lazyYT\" data-youtube-id=\"", "https://www.youtube.com/watch?v=")
-        prepstring = prepstring.replace("\" data-youtube", " <div") 
+        if "lazyYT" in string:
+            prepstring = string.replace("<div class=\"lazyYT\" data-youtube-id=\"", "https://www.youtube.com/watch?v=")
+            prepstring = prepstring.replace("\" data-youtube", " <div") 
         prepstring = remove_tags(prepstring)
 	send_bloco(prepstring)
 
