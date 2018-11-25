@@ -61,8 +61,7 @@ def created_post(data):
 
 
         prepstring = string.replace("<div class=\"lazyYT\" data-youtube-id=\"", "https://www.youtube.com/watch?v=")
-        prepstring = prepstring.replace("\" data-youtube", " <div>")
-        prepstring = prepstring.replace("></div>", "</div>")
+        prepstring = prepstring.replace("\" data-youtube", " <div") 
         prepstring = remove_tags(prepstring)
 	send_bloco(prepstring)
 
