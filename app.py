@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
 import json
@@ -54,7 +55,7 @@ def get_mentions(cooked):
     else:
         return []
 
-#processa a mensagem e retira o número a adicionar à stack
+#processa a mensagem e retira o número a adicionar a stack
 def number_cooked(cooked):
     soup = BeautifulSoup(cooked, 'html.parser')
     str = soup.get_text()
