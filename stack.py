@@ -8,6 +8,8 @@ from pydiscourse import DiscourseClient
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 '''
+from oauth2client.service_account import ServiceAccountCredentials
+
 #################### AUTENTICAR SERVICOS GOOGLE ################################
 SCOPE = [ 'https://www.googleapis.com/auth/drive']
 
