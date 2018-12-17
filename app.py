@@ -35,7 +35,7 @@ client_stack = DiscourseClient(
             api_key='888c97246374bc65ee74281ed797de4ca51fe00700f3afe3184efdd98a74a6c0')
 
 ############################### CONSTANTES #####################################
-ENGRACADINHOS = ['18_19']
+ENGRACADINHOS = ['18_19', 'Bestas']
 MANOS = ['Random', 'Stack']
 
 ################################################################################
@@ -93,7 +93,7 @@ def stack(data):
 
     user = data['post']['name']                     #ver user que criou o post
 
-    if get_group(user) in ENGRACADINHOS:            #ver se o gajo pode usar a stack
+    if data["post"]["primary_group_name"] in ENGRACADINHOS:            #ver se o gajo pode usar a stack
         dict[user] += 1000
         responde(data, 'Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + dict[user])
     else:
