@@ -31,12 +31,13 @@ def webhook():
     # endpoint for processing incoming messaging events
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
+
     try:
         stack(data)
     except:
         pass
 
-	try:
+    try:
 		facebook_message(data)
 		return "ok", 200
 	except:
