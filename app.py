@@ -138,7 +138,7 @@ def webhook():
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
 	send_message(constantids.RANDOM, stack(data))
-    '''
+'''
 	try:
 		facebook_message(data)
 		return "ok", 200
@@ -156,7 +156,7 @@ def webhook():
 		return "ok", 200
 	except:
 		send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
-    '''
+'''
 	return "ok", 200
 
 
