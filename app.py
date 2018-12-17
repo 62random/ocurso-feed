@@ -98,7 +98,7 @@ def stack(data):
             dict[user] += 1000
         except:
             dict.update({user: 1000})
-        responde(data, 'Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + dict[user])
+        responde(data, ('Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + dict[user]).encode())
     else:
         number = number_cooked(cooked)
         list = get_mentions(cooked)
