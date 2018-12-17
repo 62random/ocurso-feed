@@ -72,14 +72,23 @@ def make_mention(user):
 #envia uma mensagem para o discourse, sabendo os dados de um post e a resposta
 def responde(data, string):
     topic = data['post']['topic_id']
-    client_stack.create_post(string, topic_id= topic)
+    try:
+        client_stack.create_post(string, topic_id= topic)
+    except:
+        return str(client_stack.user('random')['user']['id'])
 
 #escreve o dicionario com as stacks na spreadsheet
 def write_sheet(dict, wks):
-    for i in range(2):
-        wks.delete_row(1)
-    wks.append_row(dict.keys())
-    wks.append_row(dict.values())
+    try:
+        for i in range(2):
+            wks.delete_row(1)
+    except:
+        pass
+    try:
+        wks.append_row(dict.keys())
+        wks.append_row(dict.values())
+    except:
+        return 'falhei'
 
 
 #flow do script
@@ -99,21 +108,15 @@ def stack(data):
         number = number_cooked(cooked)
         list = get_mentions(cooked)
         mensagem = ''
-        for a in list:
-            try:
-                dict[a] += number
-            except:
-                dict.update({a: number})
-            mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a])
+    for a in list:
         try:
-            responde(data, mensagem)
+            dict[a] += number
         except:
-            pass
-    try:
-        write_sheet(dict, wks)
-    except:
-        return "nao consegui atualizar a spread"
-    return(str(dict))
+            dict.update({a: number})
+            mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a])
+    str = responde(data, mensagem)
+    str = str + '\n\n' + write_sheet(dict, wks)
+    return(str)
 
 
 ################################################################################
