@@ -5,7 +5,11 @@ import re
 import HTMLParser
 import requests
 from flask import Flask, request
+from bs4 import BeautifulSoup
+from pydiscourse import DiscourseClient
+import gspread
 import constantids
+import stack
 app = Flask(__name__)
 
 TAG_RE = re.compile(r'<[^>]+>')
@@ -24,10 +28,14 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webhook():
-
     # endpoint for processing incoming messaging events
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
+
+    try:
+        stack(data)
+    except:
+        pass
 
 	try:
 		facebook_message(data)
@@ -61,7 +69,7 @@ def created_post(data):
 
         if "lazyYT" in string:
             string = string.replace("<div class=\"lazyYT\" data-youtube-id=\"", "https://www.youtube.com/watch?v=")
-            string = string.replace("\" data-youtube", " <div") 
+            string = string.replace("\" data-youtube", " <div")
         string = remove_tags(string)
 	send_bloco(string)
 
