@@ -108,7 +108,7 @@ def stack(data):
         try:
             responde(data, mensagem)
         except:
-            pass "nao consegui responder"
+            pass
     try:
         write_sheet(dict, wks)
     except:
