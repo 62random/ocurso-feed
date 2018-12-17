@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
 import sys
 import json
 from bs4 import BeautifulSoup
 import re
 from pydiscourse import DiscourseClient
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-'''
 from oauth2client.service_account import ServiceAccountCredentials
 
 #################### AUTENTICAR SERVICOS GOOGLE ################################

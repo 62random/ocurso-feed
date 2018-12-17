@@ -5,9 +5,6 @@ import re
 import HTMLParser
 import requests
 from flask import Flask, request
-from bs4 import BeautifulSoup
-from pydiscourse import DiscourseClient
-import gspread
 import constantids
 import stack
 app = Flask(__name__)
