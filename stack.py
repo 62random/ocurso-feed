@@ -84,20 +84,22 @@ def stack(data):
         return 'falhei na spread'
 
     user = data['post']['name']                     #ver user que criou o post
-
-    if get_group(user) in ENGRACADINHOS:            #ver se o gajo pode usar a stack
-        dict[user] += 1000
-        responde(data, 'Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + dict[user])
-    else:
-        number = number_cooked(cooked)
-        list = get_mentions(cooked)
-        mensagem = ''
-        for a in list:
-            try:
-                dict[a] += number
-            except:
-                dict.update({a: number})
-            mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a])
-        responde(data, mensagem)
-    write_sheet(dict, wks)
+    try:
+        if get_group(user) in ENGRACADINHOS:            #ver se o gajo pode usar a stack
+            dict[user] += 1000
+            responde(data, 'Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + dict[user])
+        else:
+            number = number_cooked(cooked)
+            list = get_mentions(cooked)
+            mensagem = ''
+            for a in list:
+                try:
+                    dict[a] += number
+                except:
+                    dict.update({a: number})
+                mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a])
+            responde(data, mensagem)
+        write_sheet(dict, wks)
+    except:
+        return 'resto'
     return(str(dict))
