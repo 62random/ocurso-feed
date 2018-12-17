@@ -68,7 +68,7 @@ def get_group(string):
 
 #constrói uma mention a partir de um user
 def make_mention(user):
-    return '@' + user.title()
+    return ('@' + user[0].title() + user[1:])
 
 #envia uma mensagem para o discourse, sabendo os dados de um post e a resposta
 def responde(data, string):
@@ -146,8 +146,8 @@ def webhook():
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
-    send_message(constantids.RANDOM, stack(data))
-    '''
+    string_inutil = stack(data)
+
     try:
         facebook_message(data)
         return "ok", 200
@@ -165,7 +165,7 @@ def webhook():
         return "ok", 200
     except:
         send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
-    '''
+
     return "ok", 200
 
 
