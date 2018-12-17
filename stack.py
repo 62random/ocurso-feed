@@ -23,12 +23,6 @@ client_stack = DiscourseClient(
             api_username='Stack',
             api_key='888c97246374bc65ee74281ed797de4ca51fe00700f3afe3184efdd98a74a6c0')
 
-############################### LOGGING ########################################
-
-logging.basicConfig(filename='stack.log', level=logging.INFO)
-log = logging.getLogger(__name__)
-
-
 ############################### CONSTANTES #####################################
 ENGRACADINHOS = ['18_19']
 MANOS = ['Random', 'Stack']
