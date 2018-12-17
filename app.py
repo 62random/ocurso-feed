@@ -90,7 +90,8 @@ def stack(data):
         dict = {}
         for i in wks.get_all_records():
             dict.update(i)
-
+    except:
+        return 'falhei'
         user = data['post']['name']                     #ver user que criou o post
 
         if get_group(user) in ENGRACADINHOS:            #ver se o gajo pode usar a stack
@@ -108,8 +109,6 @@ def stack(data):
                 mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a])
             responde(data, mensagem)
         write_sheet(dict, wks)
-    except:
-        return 'falhei'
     return(str(dict))
 
 
