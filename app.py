@@ -88,8 +88,9 @@ def stack(data):
     if data["post"]:                                #sacar texto da mensagem
         cooked = (data["post"]["cooked"])
     dict = {}
-    for i in wks.get_all_records():
-        dict.update(i)
+    try:
+        for i in wks.get_all_records():
+            dict.update(i)
 
     user = make_mention(data['post']['name'])                     #ver user que criou o post
 
