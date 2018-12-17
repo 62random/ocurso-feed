@@ -87,6 +87,11 @@ def write_sheet(dict, wks):
 def stack(data):
     if data["post"]:                                #sacar texto da mensagem
         cooked = (data["post"]["cooked"])
+
+    list = get_mentions(cooked)
+    if not list:
+        return 'nothing'
+
     dict = {}
     try:
         for i in wks.get_all_records():
@@ -104,7 +109,6 @@ def stack(data):
         responde(data, 'Paneleiro, enche mil...\n    '+ user + ' +1000 -> ' + str(dict[user]))
     else:
         number = number_cooked(cooked)
-        list = get_mentions(cooked)
         mensagem = ''
         for a in list:
             try:
