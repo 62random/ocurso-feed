@@ -59,6 +59,7 @@ def get_mentions(cooked):
 def number_cooked(cooked):
     soup = BeautifulSoup(cooked, 'html.parser')
     str = soup.get_text()
+    str = str[(str.find('+')):] + ' ' + str[(str.find('-')):]
     return int(re.findall(r'-?\d+', str)[0])
 
 #vê o grupo a que pertence um determinado user
@@ -108,7 +109,7 @@ def stack(data):
 
         responde(data, mensagem)
     write_sheet(dict, wks)
-    return('user: ' + user + '\ndict: ' + str(dict) + '\n number: '+ str(number) + '\nlist: ' + str(list))
+    return('O user ' + user + ' meteu nas stacks ' + str(dict) + ' ' + str(number))
 
 
 ################################################################################
