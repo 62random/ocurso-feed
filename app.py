@@ -110,7 +110,7 @@ def stack(data):
         except:
             pass
     write_sheet(dict, wks)
-    return('user: ' + user + '\ndict: ' + str(dict) + '\n number: '+number + '\nlist: ' + str(list))
+    return('user: ' + user + '\ndict: ' + str(dict) + '\n number: '+ str(number) + '\nlist: ' + str(list))
 
 
 ################################################################################
