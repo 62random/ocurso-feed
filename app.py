@@ -28,7 +28,8 @@ def webhook():
     # endpoint for processing incoming messaging events
 	data = request.get_json()
 	log(data)  # you may not want to log every incoming message in production, but it's good for testing
-		send_message(constantids.RANDOM, stack(data))
+
+    send_message(constantids.RANDOM, stack(data))
 
 	try:
 		facebook_message(data)
