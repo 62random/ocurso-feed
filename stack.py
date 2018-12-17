@@ -33,10 +33,16 @@ MANOS = ['Random', 'Stack']
 def get_mentions(cooked):
     soup = BeautifulSoup(cooked, 'html.parser')
     list = []
+    flag = False
     for i in soup.find_all('a'):
+        if 'Stack' in i.get_text().encode():
+            flag = True
         if(i['class'][0] == "mention" and i.get_text().encode() in ENGRACADINHOS):          #o [0] e para extrair a string "mention" do objeto
             list.append(i.get_text().encode())
-    return list
+    if flag:
+        return list
+    else:
+        return []
 
 #processa a mensagem e retira o número a adicionar à stack
 def number_cooked(cooked):
@@ -88,3 +94,4 @@ def stack(data):
                 mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a])
             responde(data, mensagem)
         write_sheet(dict, wks)
+    return(str(dict))
