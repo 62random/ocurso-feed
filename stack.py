@@ -28,10 +28,6 @@ ENGRACADINHOS = ['18_19']
 MANOS = ['Random', 'Stack']
 
 ################################################################################
-#abrir ficheiro de teste //retirar depois
-with open("data.json", "r") as file:
-    data = json.load(file)
-
 
 #retirar as mentions do texto
 def get_mentions(cooked):
