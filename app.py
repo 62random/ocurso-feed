@@ -48,7 +48,7 @@ def get_mentions(cooked):
     for i in soup.find_all('a'):
         if 'Stack' in i.get_text().encode():
             flag = True
-        if i['class'][0] == "mention" and not 'Stack' in i.get_text().encode():          #o [0] e para extrair a string "mention" do objeto
+        if i['class'][0] == "mention":          #o [0] e para extrair a string "mention" do objeto
             list.append(i.get_text().encode())
     if flag:
         return list
