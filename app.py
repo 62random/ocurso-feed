@@ -99,7 +99,7 @@ def stack(data):
     except:
         pass
 
-    user = make_mention(data['post']['name'])                     #ver user que criou o post
+    user = make_mention(data['post']['username'])                     #ver user que criou o post
 
     if data["post"]["primary_group_name"] in ENGRACADINHOS:            #ver se o gajo pode usar a stack
         try:
