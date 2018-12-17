@@ -91,14 +91,14 @@ def stack(data):
     for i in wks.get_all_records():
         dict.update(i)
 
-    user = data['post']['name']                     #ver user que criou o post
+    user = make_mention(data['post']['name'])                     #ver user que criou o post
 
     if data["post"]["primary_group_name"] in ENGRACADINHOS:            #ver se o gajo pode usar a stack
         try:
             dict[user] += 1000
         except:
             dict.update({user: 1000})
-        responde(data, 'Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + str(dict[user]))
+        responde(data, 'Paneleiro, enche mil...\n    '+ user + ' +1000 -> ' + str(dict[user]))
     else:
         number = number_cooked(cooked)
         list = get_mentions(cooked)
