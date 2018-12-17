@@ -94,7 +94,10 @@ def stack(data):
     user = data['post']['name']                     #ver user que criou o post
 
     if data["post"]["primary_group_name"] in ENGRACADINHOS:            #ver se o gajo pode usar a stack
-        dict[user] += 1000
+        try:
+            dict[user] += 1000
+        except:
+            dict.update({user: 1000})
         responde(data, 'Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + dict[user])
     else:
         number = number_cooked(cooked)
