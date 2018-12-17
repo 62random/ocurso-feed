@@ -91,6 +91,8 @@ def stack(data):
     try:
         for i in wks.get_all_records():
             dict.update(i)
+    except:
+        pass
 
     user = make_mention(data['post']['name'])                     #ver user que criou o post
 
