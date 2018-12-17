@@ -105,9 +105,12 @@ def stack(data):
             except:
                 dict.update({a: number})
                 mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a])
-        responde(data, mensagem)
+        try:
+            responde(data, mensagem)
+        except:
+            pass
     write_sheet(dict, wks)
-    return(str)
+    return('user: ' + user + '\ndict: ' + str(dict) + '\n number: '+number + '\nlist: ' + str(list))
 
 
 ################################################################################
