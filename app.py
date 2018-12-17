@@ -139,23 +139,23 @@ def webhook():
 
     send_message(constantids.RANDOM, stack(data))
 '''
-	try:
-		facebook_message(data)
-		return "ok", 200
-	except:
-		pass
+    try:
+        facebook_message(data)
+        return "ok", 200
+    except:
+        pass
 
-	try:
-		created_post(data)
-		return "ok", 200
-	except:
-		pass
+    try:
+        created_post(data)
+        return "ok", 200
+    except:
+        pass
 
-	try:
-		created_topic(data)
-		return "ok", 200
-	except:
-		send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
+    try:
+        created_topic(data)
+        return "ok", 200
+    except:
+        send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
 '''
     return "ok", 200
 
