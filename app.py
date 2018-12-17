@@ -36,7 +36,7 @@ client_stack = DiscourseClient(
 
 ############################### CONSTANTES #####################################
 ENGRACADINHOS = ['18_19', 'Bestas']
-MANOS = ['Random', 'Stack']
+MANOS = ['Random']
 
 ################################################################################
 
@@ -111,12 +111,14 @@ def stack(data):
         number = number_cooked(cooked)
         mensagem = ''
         for a in list:
-            try:
-                dict[a] += number
-            except:
-                dict.update({a: number})
-            mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a]) + '\n'
-
+            if a in MANOS:
+                mensagem = mensagem + 'Não mando o mano ' + a + ' encher\n'
+            else:
+                try:
+                    dict[a] += number
+                except:
+                    dict.update({a: number})
+                mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a]) + '\n'
         responde(data, mensagem)
     write_sheet(dict, wks)
     return('O user ' + user + ' meteu nas stacks ' + str(dict) + ' ' + str(number))
