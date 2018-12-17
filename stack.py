@@ -72,19 +72,15 @@ def write_sheet(dict, wks):
 
 #flow do script
 def stack(data):
-    if data["post"]:                                #sacar texto da mensagem
-        cooked = (data["post"]["cooked"])
-    else:
-        return '1'
     try:
+        if data["post"]:                                #sacar texto da mensagem
+            cooked = (data["post"]["cooked"])
         dict = {}
         for i in wks.get_all_records():
             dict.update(i)
-    except:
-        return 'falhei na spread'
 
-    user = data['post']['name']                     #ver user que criou o post
-    try:
+        user = data['post']['name']                     #ver user que criou o post
+
         if get_group(user) in ENGRACADINHOS:            #ver se o gajo pode usar a stack
             dict[user] += 1000
             responde(data, 'Paneleiro, enche mil...\n    '+ make_mention(user) + ' +1000 -> ' + dict[user])
@@ -101,5 +97,5 @@ def stack(data):
             responde(data, mensagem)
         write_sheet(dict, wks)
     except:
-        return 'resto'
+        return 'falhei'
     return(str(dict))
