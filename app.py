@@ -118,7 +118,7 @@ def stack(data):
                     dict[a] += number
                 except:
                     dict.update({a: number})
-                mensagem = mensagem + '     ' + a + ' +' + str(number) + ' ->  ' + str(dict[a]) + '\n'
+                mensagem = mensagem + '    ' + a + ' +' + str(number) + ' ->  ' + str(dict[a]) + '\n'
         responde(data, mensagem)
     write_sheet(dict, wks)
     return('O user ' + user + ' meteu nas stacks ' + str(dict) + ' ' + str(number))
