@@ -112,7 +112,7 @@ def stack(data):
         mensagem = ''
         for a in list:
             if a in MANOS:
-                mensagem = mensagem + 'Não mando o mano ' + a + ' encher\n'
+                mensagem = mensagem + '    Não mando o mano ' + a + ' encher\n'
             else:
                 try:
                     dict[a] += number
