@@ -106,7 +106,7 @@ def stack(data):
             dict[user] += 1000
         except:
             dict.update({user: 1000})
-        responde(data, 'Paneleiro, enche mil...\n    '+ user + ' +1000 -> ' + str(dict[user]))
+        responde(data, 'Paneleiro, enche mil...\n\n    '+ user + ' +1000 -> ' + str(dict[user]))
     else:
         number = number_cooked(cooked)
         mensagem = ''
