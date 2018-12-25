@@ -96,7 +96,7 @@ def stack(data):
     try:
         for i in wks.get_all_records():
             dict.update(i)
-        log(str(dict))
+        log('DICIONARIO IMPORTADO = ' + str(dict))
     except:
         pass
 
@@ -150,8 +150,7 @@ def webhook():
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     try:
-        string_inutil = stack(data)
-        return 'ok', 200
+        log(stack(data))
     except:
         pass
 
