@@ -96,6 +96,7 @@ def stack(data):
     try:
         for i in wks.get_all_records():
             dict.update(i)
+        log(str(dict))
     except:
         pass
 
@@ -150,6 +151,7 @@ def webhook():
 
     try:
         string_inutil = stack(data)
+        return 'ok', 200
     except:
         pass
 
