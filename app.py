@@ -161,12 +161,6 @@ def webhook():
         created_post(data)
         return "ok", 200
     except:
-        pass
-
-    try:
-        created_topic(data)
-        return "ok", 200
-    except:
         send_message(constantids.RANDOM, "erro :(\n Data:\n" + str(data))
 
     return "ok", 200
@@ -186,18 +180,6 @@ def created_post(data):
             string = string.replace("\" data-youtube", " <div")
         string = remove_tags(string)
 	send_bloco(string)
-
-def created_topic(data):
-	sender_id = data["topic"]["details"]["created_by"]["username"]
-	title = data["topic"]["title"]
-	post_type = data["topic"]["archetype"]
-	time = data["topic"]["last_posted_at"]
-	time = time[11:16] + " of " + time[0:10]
-	string = "New topic [" + topic + "] created by user [" + sender_id + "]\nat " + time + ".\nType: " + post_type
-
-	string = remove_tags(string)
-	send_bloco(string)
-
 
 
 def remove_tags(text):
