@@ -32,7 +32,7 @@ wks = gc.open('Stack').sheet1
 client_stack = DiscourseClient(
             'https://ocurso.org',
             api_username='Stack',
-            api_key='888c97246374bc65ee74281ed797de4ca51fe00700f3afe3184efdd98a74a6c0')
+            api_key= STACK_API_KEYI )
 
 ############################### CONSTANTES #####################################
 ENGRACADINHOS = ['18_19', 'Bestas']
@@ -133,8 +133,6 @@ TAG_RE = re.compile(r'<[^>]+>')
 
 @app.route('/', methods=['GET'])
 def verify():
-    # when the endpoint is registered as a webhook, it must echo back
-    # the 'hub.challenge' value it receives in the query arguments
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
@@ -145,9 +143,8 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webhook():
-    # endpoint for processing incoming messaging events
     data = request.get_json()
-    log(data)  # you may not want to log every incoming message in production, but it's good for testing
+    log(data)  
 
     try:
         log(stack(data))
